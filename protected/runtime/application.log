@@ -1,0 +1,44 @@
+2015/04/21 14:30:20 [error] [exception.CException] exception 'CException' with message 'User and its behaviors do not have a method or closure named "validatePassword".' in F:\Temp\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 F:\Temp\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('validatePasswor...', Array)
+#1 F:\Temp\xampp\htdocs\yii\protected\components\UserIdentity.php(36): CActiveRecord->__call('validatePasswor...', Array)
+#2 F:\Temp\xampp\htdocs\yii\protected\components\UserIdentity.php(36): User->validatePassword('demo')
+#3 F:\Temp\xampp\htdocs\yii\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#4 F:\Temp\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#5 F:\Temp\xampp\htdocs\yii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#6 F:\Temp\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#7 F:\Temp\xampp\htdocs\yii\protected\controllers\SiteController.php(94): CModel->validate()
+#8 F:\Temp\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#9 F:\Temp\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\Temp\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 F:\Temp\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\Temp\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#13 F:\Temp\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#14 F:\Temp\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#15 F:\Temp\xampp\htdocs\yii\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/index.php?r=site/login
+HTTP_REFERER=http://localhost/yii/index.php?r=site/login
+---
+2015/04/21 14:30:41 [error] [exception.CException] exception 'CException' with message 'User and its behaviors do not have a method or closure named "validatePassword".' in F:\Temp\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 F:\Temp\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('validatePasswor...', Array)
+#1 F:\Temp\xampp\htdocs\yii\protected\components\UserIdentity.php(36): CActiveRecord->__call('validatePasswor...', Array)
+#2 F:\Temp\xampp\htdocs\yii\protected\components\UserIdentity.php(36): User->validatePassword('demo')
+#3 F:\Temp\xampp\htdocs\yii\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#4 F:\Temp\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#5 F:\Temp\xampp\htdocs\yii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#6 F:\Temp\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#7 F:\Temp\xampp\htdocs\yii\protected\controllers\SiteController.php(94): CModel->validate()
+#8 F:\Temp\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#9 F:\Temp\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 F:\Temp\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 F:\Temp\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\Temp\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#13 F:\Temp\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#14 F:\Temp\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#15 F:\Temp\xampp\htdocs\yii\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/index.php?r=site/login
+HTTP_REFERER=http://localhost/yii/index.php?r=site/login
+---
