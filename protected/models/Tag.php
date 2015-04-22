@@ -103,4 +103,12 @@ class Tag extends CActiveRecord
         return implode(', ', $tags);
     }
 
+    public function updateFrequency($oldTags, $newTags)
+    {
+        $oldTags=self::string2array($oldTags);
+        $newTags=self::string2array($newTags);
+        $this->addTags(array_values(array_diff($newTags,$oldTags)));
+        $this->removeTags(array_values(array_diff($oldTags,$newTags)));
+    }
+
 }

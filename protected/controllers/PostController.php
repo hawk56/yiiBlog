@@ -32,12 +32,7 @@ class PostController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
 				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -49,10 +44,10 @@ class PostController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView()
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+        $this->render('view',array(
+			'model'=>$this->loadModel(),
 		));
 	}
 
@@ -122,7 +117,22 @@ class PostController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Post');
+        $criteria = new CDbCriteria(array(
+            'condition' => "status=".Post::STATUS_PUBLISHED,
+            'order' => "update_time DESC",
+            'with' => 'commentsCount',
+        ));
+        if(isset($_GET['tags']))
+            $criteria->addSearchCondition('tags', $_GET['tags']);
+
+
+
+        $dataProvider=new CActiveDataProvider('Post', array(
+            'pagination' => array(
+                'pageSize'=>5,
+            ),
+            'criteria' => $criteria,
+        ));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -134,7 +144,7 @@ class PostController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Post('search');
-		$model->unsetAttributes();  // clear any default values
+        //		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Post']))
 			$model->attributes=$_GET['Post'];
 
@@ -150,12 +160,24 @@ class PostController extends Controller
 	 * @return Post the loaded model
 	 * @throws CHttpException
 	 */
-	public function loadModel($id)
+    private $_model;
+	public function loadModel()
 	{
-		$model=Post::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
+        //        $model=Post::model()->findByPk($id);
+		if($this->_model===null) {
+            if(isset($_GET['id']))
+            {
+                if(Yii::app()->user->isGuest)
+                    $condition = "status=".Post::STATUS_PUBLISHED.
+                        " OR status=".Post::STATUS_ARCHIVED;
+                else
+                    $condition = "";
+                $this->_model = Post::model()->findByPk($_GET['id'], $condition);
+            }
+            if($this->_model===null)
+                throw new CHttpException(404, 'The requested page does not exist.');
+        }
+		return $this->_model;
 	}
 
 	/**
